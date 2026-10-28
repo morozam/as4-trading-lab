@@ -1,0 +1,37 @@
+/target/
+/.cargo/
+/.cache/
+/runtime/
+/client/node_modules/
+/client/dist/
+/test-output/
+
+/dist/
+/gateway/build/
+**/__pycache__/
+/client/.cache/
+
+# Downloads and local tools
+/.dependencies/
+/node_modules/
+/.venv/
+.DS_Store
+*.log
+
+# Local settings and keys
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.csr
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+credentials.json

@@ -1,0 +1,10 @@
+import { useState } from 'react';
+import { ArrowDownLeft, ArrowUpRight, Search } from 'lucide-react';
+import { dateTime } from './api';
+import { Badge, Empty } from './Shared';
+import type { Message } from './types';
+export function Messages({messages,onOpen}:{messages:Message[];onOpen:(id:string)=>void}) {
+ const [search,setSearch]=useState('');const [direction,setDirection]=useState('all');
+ const filtered=messages.filter(m=>(direction==='all'||m.direction===direction)&&`${m.family} ${m.document_id} ${m.id}`.toLowerCase().includes(search.toLowerCase()));
+ return <><div className="page-title"><div><span className="eyebrow">Exchange log</span><h1>Messages</h1><p>Original XML, identities, references and transport evidence.</p></div><span className="muted">{messages.length} messages</span></div><div className="section-head"><label className="search"><Search size={15}/><input aria-label="Search messages" placeholder="Family, document or AS4 ID…" value={search} onChange={e=>setSearch(e.target.value)}/></label><select aria-label="Message direction" value={direction} onChange={e=>setDirection(e.target.value)}><option value="all">All directions</option><option value="in">Inbound</option><option value="out">Outbound</option></select></div>{filtered.length?<div className="table-scroll"><table><thead><tr><th>Direction / family</th><th>Document</th><th>Received / sent</th><th>AS4 transport</th><th>Validation</th></tr></thead><tbody>{filtered.map(m=><tr key={m.id}><td><button className="table-link message-link" onClick={()=>onOpen(m.id)}>{m.direction==='in'?<ArrowDownLeft size={16}/>:<ArrowUpRight size={16}/>} {m.family}<small>{m.direction==='in'?'Inbound':'Outbound'} · {m.code}</small></button></td><td><strong className="small">{m.document_id}</strong><span className="cell-sub">v{m.version} · {m.id.slice(0,12)}</span></td><td>{dateTime(m.at)}</td><td><Badge>{m.transport_status}</Badge></td><td><Badge>{m.validation.valid?'Checks passed':'Validation failed'}</Badge></td></tr>)}</tbody></table></div>:<Empty title="No messages to display">Messages appear as submissions, responses and notifications pass through AS4.</Empty>}</>;
+}

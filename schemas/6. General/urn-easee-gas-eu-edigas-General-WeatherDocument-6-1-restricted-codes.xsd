@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ecl="urn:easee-gas.eu:edigas:codelistsV6" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!-- import the codelsits -->
+	<xsd:import namespace="urn:easee-gas.eu:edigas:codelistsV6" schemaLocation="../cclib-v6/urn-easee-gas-eu-edigas-codelistsV6.xsd"/>
+	<!-- include the local message restrictions -->
+	<xsd:include schemaLocation="urn-easee-gas-eu-edigas-General-WeatherDocument-6-1-local-restrictions.xsd"/>
+	<!--  restricted codelists  -->
+	<!-- CodingScheme type-->
+	<xsd:simpleType name="StandardRestrictedCodingSchemeCodeTypeCodeList">
+		<xsd:restriction base="ecl:StandardCodingSchemeCodeTypeCodeList">
+			<xsd:enumeration value="305"/>
+			<xsd:enumeration value="ZSO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="CodingSchemeCodeTypeCodeList">
+		<xsd:union memberTypes="StandardRestrictedCodingSchemeCodeTypeCodeList LocalRestrictedCodingSchemeCodeTypeCodeList"/>
+	</xsd:simpleType>
+	<!-- Document type-->
+	<xsd:simpleType name="StandardRestrictedDocumentCodeTypeCodeList">
+		<xsd:restriction base="ecl:StandardDocumentCodeTypeCodeList">
+			<xsd:enumeration value="AMK"/>
+			<xsd:enumeration value="AML"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DocumentCodeTypeCodeList">
+		<xsd:union memberTypes="StandardRestrictedDocumentCodeTypeCodeList LocalRestrictedDocumentCodeTypeCodeList"/>
+	</xsd:simpleType>
+	<!-- StatusCode type-->
+	<xsd:simpleType name="StandardRestrictedStatusCodeTypeCodeList">
+		<xsd:restriction base="ecl:StandardStatusCodeTypeCodeList">
+			<xsd:enumeration value="03G"/>
+			<xsd:enumeration value="04G"/>
+			<xsd:enumeration value="05G"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StatusCodeTypeCodeList">
+		<xsd:union memberTypes="StandardRestrictedStatusCodeTypeCodeList LocalRestrictedStatusCodeTypeCodeList"/>
+	</xsd:simpleType>
+	<!-- MeterologicalPropertyType type-->
+	<xsd:simpleType name="StandardRestrictedMeteorologicalPropertyCodeTypeCodeList">
+		<xsd:restriction base="ecl:StandardMeteorologicalPropertyCodeTypeCodeList">
+			<xsd:enumeration value="ZXP"/>
+			<xsd:enumeration value="ZXQ"/>
+			<xsd:enumeration value="ZXR"/>
+			<xsd:enumeration value="ZXS"/>
+			<xsd:enumeration value="ZXV"/>			
+			<xsd:enumeration value="ZXW"/>			
+			<xsd:enumeration value="ZXX"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MeteorologicalPropertyCodeTypeCodeList">
+		<xsd:union memberTypes="StandardRestrictedMeteorologicalPropertyCodeTypeCodeList LocalRestrictedMeteorologicalPropertyCodeTypeCodeList"/>
+	</xsd:simpleType>
+	<!-- Role type-->
+	<xsd:simpleType name="StandardRestrictedRoleCodeTypeCodeList">
+		<xsd:restriction base="ecl:StandardRoleCodeTypeCodeList">
+			<xsd:enumeration value="ZUH"/>
+			<xsd:enumeration value="ZUW"/>
+			<xsd:enumeration value="ZSH"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RoleCodeTypeCodeList">
+		<xsd:union memberTypes="StandardRestrictedRoleCodeTypeCodeList LocalRestrictedRoleCodeTypeCodeList"/>
+	</xsd:simpleType>
+</xsd:schema>
